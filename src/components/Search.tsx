@@ -24,18 +24,38 @@ export const Search = () => {
     }
 
     return <Container>
-        <input type='text' value={text} onChange={handleTextChange} />
-        <select onChange={handleEngineChange} value={engine}>
+        <Input type='text' value={text} onChange={handleTextChange} />
+        <Select onChange={handleEngineChange} value={engine}>
             {
                 Object.entries(Engines).map( ([key, value])=> {
                     return <option key={key} value={value} selected={engine === value}>{key}</option>
                 })
             }
-        </select>
-        <button onClick={handleSearch}>Search</button>
+        </Select>
+        <Button onClick={handleSearch}>Search</Button>
     </Container>
 }
 
 const Container = styled.div`
     display: flex;
+`
+
+const Input = styled.input`
+    border: 1px solid darkblue;
+    border-right: 0;
+    padding: 4px 12px;
+`
+
+const Select = styled.select`
+    padding: 4px 12px;
+    font-weight: 500;
+`
+
+const Button = styled.button`
+    margin-left: 20px;
+    background-color: darkblue;
+    border: 0;
+    border-radius: 8px;
+    padding: 4px 12px;
+    color: #FCFCFC;
 `
