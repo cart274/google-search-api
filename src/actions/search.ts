@@ -1,12 +1,28 @@
 import { SET_SEARCH_RESULT } from '../state/types'
 import { AppDispatch } from '../state/store'
-import { responseToSearch } from '../utils/googleSearch'
+import { getSearchFromGoogle } from '../utils/googleSearch'
+import { Engines } from '../constants/engines'
 
-const googleURL = `https://www.googleapis.com/customsearch/v1?key=${process.env.REACT_APP_GOOGLE_API_KEY}&cx=${process.env.REACT_APP_GOOGLE_CX}&q=`
+interface Item{
+    url: string; 
+    resume: string; 
+    title: string;
+}
 
-export const requestsearch = (engine: string, searchText: string) => (dispatch: AppDispatch) => {
-    fetch(`${googleURL}${searchText}`)
-    .then(response => response.json())
-    .then(json => dispatch({ type: SET_SEARCH_RESULT, payload: responseToSearch(json.items) }))
-    .catch(error => console.log(error))
+export const requestsearch = (engine: string, searchText: string) => async (dispatch: AppDispatch) => {
+    let response:Item[] = []
+    switch(engine) {
+        case Engines.Google:
+            response = await getSearchFromGoogle(searchText)
+            break
+        case Engines.Bing:
+            response = await getSearchFromGoogle(searchText)
+            break
+        case Engines.All:
+            response = await getSearchFromGoogle(searchText)
+            break
+        default:
+    }
+
+    dispatch({ type: SET_SEARCH_RESULT, payload: response })
 }

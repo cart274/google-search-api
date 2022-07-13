@@ -2,12 +2,7 @@ import React, {useState} from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { requestsearch } from '../actions/search'
-
-enum Engines {
-    Google = 'google',
-    Bing = 'bing',
-    All = 'all' 
-}
+import { Engines } from '../constants/engines'
 
 interface SearchProps {
     requestsearch: any
