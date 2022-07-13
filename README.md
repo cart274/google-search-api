@@ -1,6 +1,11 @@
-# Getting Started with Create React App
+# Getting Started
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+To be able to search with the Google engine, create an environment file and add the following vars
+
+REACT_APP_GOOGLE_API_KEY =
+REACT_APP_GOOGLE_CX =
 
 ## Available Scripts
 

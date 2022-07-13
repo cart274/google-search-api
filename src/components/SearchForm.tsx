@@ -26,7 +26,7 @@ const Search = ({requestsearch, loading}: SearchProps) => {
     }
 
     return <Container>
-        <Input type='text' value={searchText} onChange={handleTextChange} />
+        <Input type='text' placeholder='Write your search' value={searchText} onChange={handleTextChange} />
         <Select onChange={handleEngineChange} value={engine || Engines.Google}>
             {
                 Object.entries(Engines).map( ([key, value])=> {

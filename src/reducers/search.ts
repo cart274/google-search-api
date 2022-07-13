@@ -1,6 +1,6 @@
 import { SET_SEARCH_RESULT, SET_LOADING_RESULT  } from '../state/types'
 
-const initialState = {
+export const initialState = {
   loading: false,
   searchResult: [],
 }
