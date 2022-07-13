@@ -27,3 +27,17 @@ it('Test input and button', async () => {
     expect(searchButton).not.toBeDisabled()
 
 })
+
+it('Test loading', async () => {
+    const store = mockStore({
+        searchReducers: { 
+            loading: true,
+        }
+    })
+
+    render(<SearchForm store={store} />)
+
+    const loading = screen.getByText(/loading/i)
+    expect(loading).toBeVisible()
+
+})
