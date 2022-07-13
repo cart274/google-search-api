@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
+import { connect } from 'react-redux'
+import { requestsearch } from '../actions/search'
 
 enum Engines {
     Google = 'google',
@@ -7,12 +9,16 @@ enum Engines {
     All = 'all' 
 }
 
-export const Search = () => {
-    const [text, setText] = useState('')
+interface SearchProps {
+    requestsearch: any
+}
+
+const Search = ({requestsearch}: SearchProps) => {
+    const [searchText, setSearchText] = useState('')
     const [engine, setEngine] = useState<Engines>(Engines.Google)
 
     const handleTextChange = (event: React.ChangeEvent<HTMLInputElement> ) => {
-        setText(event.target.value)
+        setSearchText(event.target.value)
     }
 
     const handleEngineChange = (event: React.ChangeEvent<HTMLSelectElement> ) => {
@@ -20,21 +26,27 @@ export const Search = () => {
     }
 
     const handleSearch = () => {
-        console.log('Searching...')
+        requestsearch(engine, searchText)
     }
 
     return <Container>
-        <Input type='text' value={text} onChange={handleTextChange} />
-        <Select onChange={handleEngineChange} value={engine}>
+        <Input type='text' value={searchText} onChange={handleTextChange} />
+        <Select onChange={handleEngineChange} value={engine || Engines.Google}>
             {
                 Object.entries(Engines).map( ([key, value])=> {
-                    return <option key={key} value={value} selected={engine === value}>{key}</option>
+                    return <option key={key} value={value}>{key}</option>
                 })
             }
         </Select>
         <Button onClick={handleSearch}>Search</Button>
     </Container>
 }
+
+const mapDispatchToProps = {
+    requestsearch,
+}
+
+export default connect(null, mapDispatchToProps)(Search)
 
 const Container = styled.div`
     display: flex;

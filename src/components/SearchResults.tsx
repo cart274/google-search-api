@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { connect } from 'react-redux'
 
 interface SearchList {
     title: string,
@@ -7,27 +8,15 @@ interface SearchList {
     resume: string
 }
 
-const SEARCH = [{
-    title: "Lorem ipsum dolor sit",
-    url: "https://github.com",
-    resume: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi quaerat dolor culpa deleniti ratione magnam natus quo, explicabo doloremque impedit odio. Inventore ad magnam illum, delectus a repellat quidem quibusdam!"
-},
-{
-    title: "Lorem ipsum dolor sit",
-    url: "https://github.com",
-    resume: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi quaerat dolor culpa deleniti ratione magnam natus quo, explicabo doloremque impedit odio. Inventore ad magnam illum, delectus a repellat quidem quibusdam!"
-},
-{
-    title: "Lorem ipsum dolor sit",
-    url: "https://github.com",
-    resume: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi quaerat dolor culpa deleniti ratione magnam natus quo, explicabo doloremque impedit odio. Inventore ad magnam illum, delectus a repellat quidem quibusdam!"
-}]
+interface SearchResultProps {
+    results: SearchList[]
+}
 
-export const SearchResult = () => {
-
+const SearchResult = ({results}: SearchResultProps) => {
+    
     return <Container>
         {
-            SEARCH.map( ({title, url, resume}: SearchList) => <>
+            results.map( ({title, url, resume}: SearchList) => <>
                 <Cite> {title} </Cite>
                 <Link href={url}> {url} </Link>
                 <p> {resume} </p>
@@ -36,6 +25,13 @@ export const SearchResult = () => {
         }
     </Container>
 }
+
+const mapStateToProps = (state: any) => {
+    return ({
+    results: state.searchReducers.searchResult,
+})}
+    
+export default connect(mapStateToProps)(SearchResult)
 
 const Container = styled.div`
     margin: 40px 0 0 0px;
