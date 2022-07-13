@@ -14,8 +14,8 @@ export const getSearchFromGoogle = async (searchText: string) => {
     return items || []
 }
 
-export const responseToSearch = (response: Item[]) => {
-    return response.map((item, key) => ({
+const responseToSearch = (items: Item[]) => {
+    return items.map((item, key) => ({
         url: item.link,
         resume: item.snippet,
         title: item.title,
