@@ -14,11 +14,11 @@ export const getSearchFromBing = async (searchText: string) => {
     return items || []
 }
 
-export const responseToSearch = (response: Item[]) => {
-    return response.map((item, key) => ({
+export const responseToSearch = (items: Item[]) => {
+    return items.length > 0 ? items.map((item, key) => ({
         url: `http://${item.title.replaceAll(' ','-')}.com`,
         resume: item.body,
         title: item.title,
         id: item.id
-    }))
+    })) : []
 }
