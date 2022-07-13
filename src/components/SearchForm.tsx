@@ -34,7 +34,7 @@ const Search = ({requestsearch, loading}: SearchProps) => {
                 })
             }
         </Select>
-        {loading? <Loading>...loading</Loading> : <Button onClick={handleSearch} disabled={!searchText.length}>Search</Button>}
+        {loading? <Loading>loading...</Loading> : <Button onClick={handleSearch} disabled={!searchText.length}>Search</Button>}
     </Container>
 }
 
