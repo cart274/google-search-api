@@ -5,6 +5,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 To be able to search with the Google engine, create an environment file and add the following vars
 
 REACT_APP_GOOGLE_API_KEY =
+
 REACT_APP_GOOGLE_CX =
 
 ## Available Scripts
