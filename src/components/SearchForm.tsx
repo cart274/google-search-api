@@ -3,9 +3,10 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { requestsearch } from '../actions/search'
 import { Engines } from '../constants/engines'
+import { RootState } from '../state/store'
 
 interface SearchProps {
-    requestsearch: any
+    requestsearch: (engine: string, searchText: string) => Promise<void>
     loading: boolean
 }
 
@@ -38,7 +39,7 @@ const Search = ({requestsearch, loading}: SearchProps) => {
     </Container>
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: RootState) => {
     return ({
     loading: state.searchReducers.loading,
 })}

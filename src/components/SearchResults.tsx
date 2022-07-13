@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
+import { RootState } from '../state/store'
 
 interface SearchList {
     id: string
@@ -27,7 +28,7 @@ const SearchResult = ({results}: SearchResultProps) => {
     </Container>
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: RootState) => {
     return ({
     results: state.searchReducers.searchResult,
 })}
