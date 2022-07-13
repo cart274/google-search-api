@@ -3,8 +3,9 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 
 interface SearchList {
-    title: string,
-    url: string,
+    id: string
+    title: string
+    url: string
     resume: string
 }
 
@@ -16,11 +17,11 @@ const SearchResult = ({results}: SearchResultProps) => {
     
     return <Container>
         {
-            results.map( ({title, url, resume}: SearchList) => <>
-                <Cite> {title} </Cite>
-                <Link href={url}> {url} </Link>
-                <p> {resume} </p>
-                </>
+            results.map( ({id, title, url, resume}: SearchList) => <li key={id}>
+                    <Cite> {title} </Cite>
+                    <Link href={url}> {url} </Link>
+                    <p> {resume} </p>
+                </li>
             )
         }
     </Container>
@@ -33,10 +34,11 @@ const mapStateToProps = (state: any) => {
     
 export default connect(mapStateToProps)(SearchResult)
 
-const Container = styled.div`
+const Container = styled.ul`
     margin: 40px 0 0 0px;
     width: 50%;
 `
+
 const Cite = styled.cite`
     font-size: 12px;
 `

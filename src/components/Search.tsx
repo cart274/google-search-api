@@ -6,9 +6,10 @@ import { Engines } from '../constants/engines'
 
 interface SearchProps {
     requestsearch: any
+    loading: boolean
 }
 
-const Search = ({requestsearch}: SearchProps) => {
+const Search = ({requestsearch, loading}: SearchProps) => {
     const [searchText, setSearchText] = useState('')
     const [engine, setEngine] = useState<Engines>(Engines.Google)
 
@@ -33,15 +34,20 @@ const Search = ({requestsearch}: SearchProps) => {
                 })
             }
         </Select>
-        <Button onClick={handleSearch}>Search</Button>
+        {loading? <Loading>...loading</Loading> : <Button onClick={handleSearch} disabled={!searchText.length}>Search</Button>}
     </Container>
 }
+
+const mapStateToProps = (state: any) => {
+    return ({
+    loading: state.searchReducers.loading,
+})}
 
 const mapDispatchToProps = {
     requestsearch,
 }
 
-export default connect(null, mapDispatchToProps)(Search)
+export default connect(mapStateToProps, mapDispatchToProps)(Search)
 
 const Container = styled.div`
     display: flex;
@@ -65,4 +71,12 @@ const Button = styled.button`
     border-radius: 8px;
     padding: 4px 12px;
     color: #FCFCFC;
+    cursor: pointer;
+    &:disabled {
+        background-color: gray;
+    }
+`
+
+const Loading = styled.span`
+    margin-left: 20px;
 `

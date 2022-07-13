@@ -15,9 +15,10 @@ export const getSearchFromGoogle = async (searchText: string) => {
 }
 
 export const responseToSearch = (response: Item[]) => {
-    return response.map((item) => ({
+    return response.map((item, key) => ({
         url: item.link,
         resume: item.snippet,
-        title: item.title
+        title: item.title,
+        id: `${item.link}${key}`
     }))
 }

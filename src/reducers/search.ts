@@ -1,23 +1,8 @@
-import { SET_SEARCH_RESULT } from '../state/types'
-
-const SEARCH = [{
-    title: "Lorem ipsum dolor sit",
-    url: "https://github.com",
-    resume: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi quaerat dolor culpa deleniti ratione magnam natus quo, explicabo doloremque impedit odio. Inventore ad magnam illum, delectus a repellat quidem quibusdam!"
-},
-{
-    title: "Lorem ipsum dolor sit",
-    url: "https://github.com",
-    resume: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi quaerat dolor culpa deleniti ratione magnam natus quo, explicabo doloremque impedit odio. Inventore ad magnam illum, delectus a repellat quidem quibusdam!"
-},
-{
-    title: "Lorem ipsum dolor sit",
-    url: "https://github.com",
-    resume: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi quaerat dolor culpa deleniti ratione magnam natus quo, explicabo doloremque impedit odio. Inventore ad magnam illum, delectus a repellat quidem quibusdam!"
-}]
+import { SET_SEARCH_RESULT, SET_LOADING_RESULT  } from '../state/types'
 
 const initialState = {
-  searchResult: SEARCH
+  loading: false,
+  searchResult: [],
 }
 
 const searchReducers = (state = initialState, action: any) => {
@@ -25,7 +10,14 @@ const searchReducers = (state = initialState, action: any) => {
     case SET_SEARCH_RESULT: {
       return {
         ...state,
-        searchResult: action.payload
+        searchResult: action.payload,
+        loading: false
+      }
+    }
+    case SET_LOADING_RESULT: {
+      return {
+        ...state,
+        loading: action.payload
       }
     }
     default: {
